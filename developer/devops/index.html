@@ -229,6 +229,18 @@
             </li>
             <li class="nav-item" data-level="2"><a href="#useful-commands" class="nav-link">Useful Commands</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="3"><a href="#alias-shell-script" class="nav-link">Alias Shell Script</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#aliassh" class="nav-link">alias.sh</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="3"><a href="#alias-configtxt" class="nav-link">alias-config.txt</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             <li class="nav-item" data-level="2"><a href="#additional-resources" class="nav-link">Additional Resources</a>
@@ -275,6 +287,8 @@
 │    └── dev.env.example
 ├── .dockerignore
 ├── docker-compose.yml
+├── alias-config.txt
+└── alias.sh
 </code></pre>
 <p><em><p style="text-align: center;">DevOps Architecture</p></em></p>
 <h2 id="summary">Summary</h2>
@@ -288,6 +302,7 @@
 <li><strong>dev/:</strong> contains two dockerfiles and an env file. <code>django.dockerfile</code> contains information for our Django server setup. <code>webpack.dockerfile</code> contains information to start our webpack watch plugin. <code>dev.env.example</code> is an example of the env file needed to configure our dev environment.</li>
 <li><strong>.dockerignore:</strong> This file tells Docker to ignore certain files when building the container. These are usually files that pertain to docker or git, which are not important when building the webserver.</li>
 <li><strong>docker-compose.yml:</strong> Contains instructions for docker when we run "docker compose". To know more about what each line does, please consult <a href="https://docs.docker.com/compose/compose-file/">Docker's documentation</a>.</li>
+<li><strong>alias.sh:</strong> Contains a shell script that allows for cumbersome commands to be executed with less typing by leveraging the aliases listed in <code>alias-config.txt</code></li>
 </ul>
 <h2 id="docker">Docker</h2>
 <p>Docker is a platform that allows packaging and virtualizing applications within a container. This gives developers the powerful ability to collaborate in a stable, synchonized environment, and deploying web applications with the greatest of ease. We will not be going too much into Docker here, but we will explain in greater depth some of the Docker configurations we have made.</p>
@@ -343,6 +358,12 @@ COPY . .
 <pre><code class="language-bash">docker compose build --progress=plain
 </code></pre>
 <p>Sometimes when a build is happening, the logs are too opaque to debug if a step goes wrong. This commands makes the logs a bit more verbose so that you might have an easier time debugging.</p>
+<h3 id="alias-shell-script">Alias Shell Script</h3>
+<p>For convenience, we have created a shell script that allows for longer commands to be executed with less typing. The script is capable of executing any of the commands listed in <code>alias-config.txt</code> without having to type out the entire command.</p>
+<h3 id="aliassh"><code>alias.sh</code></h3>
+<p>To use this script, run <code>bash alias.sh $arg</code> or <code>./alias.sh $arg</code> where <code>$arg</code> is the alias of the command you wish to execute. For example, try running <code>bash alias.sh test</code>.</p>
+<h3 id="alias-configtxt"><code>alias-config.txt</code></h3>
+<p>This file contains many of the important commands you will need when developing for this project. Note that each command starts with a single word followed by a <code>:</code> and then a command. You must follow this pattern when adding additional commands to the file. Please note that any <code>docker run</code> commands must use the <code>-T</code> flag to allocate a pusedo-TTY or the command will not work.</p>
 <h2 id="additional-resources">Additional Resources</h2>
 <p><a href="https://docs.docker.com/">Docker Documentation</a><br></p></div>
             </div>

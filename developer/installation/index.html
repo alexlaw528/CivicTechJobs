@@ -304,6 +304,10 @@ The macOS version of git involves downloading extra programs, such as Homebrew. 
 <p><code>docker compose run [container name] [command to run in container]</code></p>
 <p>In this scenario, the full command would be:</p>
 <p><code>docker compose run webpack npm install</code></p>
+<h5 id="5-webpack-cli-error-eacces-permission-denied-open-codefrontendtemplatesfrontendindexhtml">5. [webpack-cli] [Error: EACCES: permission denied', open '/code/frontend/templates/frontend/index.html']</h5>
+<p>In this case, the <code>index.html</code> file has incorrect ownership and/or permissions. To fix this, run the following command in the root directory of the CTJ repository:</p>
+<p><code>sudo chown -R $USER:$USER</code></p>
+<p>This will utilize superuser permissions to change the user and group ownership of all the files and directories in the current directory to the current user.</p>
 <h2 id="additional-resources">Additional Resources</h2>
 <p><a href="https://git-scm.com/doc">Git Documentation</a><br>
 <a href="https://docs.docker.com/">Docker Documentation</a><br>
